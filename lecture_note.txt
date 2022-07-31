@@ -1,0 +1,43 @@
+3.0
+call signature
+:typescript에게 함수를 어떻게 호출하는지, 또 함수의 반환 타입도 알려줌
+:인자(arguments)의 타입, 함수의 반환 타입 제공
+
+type Add = (a:number, b:number) => number;
+이렇게 call signature 지정해주면 됨.
+
+const add:Add = (a, b) => a + b
+그리고 이렇게 함수 만들고,. 함수 위에 마우스 over 하면 알 수 있음!
+
+3.1
+오버로딩 overloading
+함수가 여러개의 call signatures를 가지고 있을 때 발생 됨
+어렵게 생각하지말자.
+다시 말하자면, 오버로딩은
+여러 call signatures가 있는 함수 일뿐..!!
+
+일상 개발에서 볼 수 있는 오버로딩
+
+type Config = {
+    path: string,
+    state: object
+}
+
+type Push = {
+    (path: string): void
+    (config: Config): void
+}
+
+const push:Push = (config) => {
+    if (typeof config === "string") { console.log(config) }
+    else {
+        console.log(config.path)
+    }
+}
+
+call signatures에서, type만 다른 것도 있지만,
+파라미터의 개수가 다른 경우도 있음
+type Add2 = {
+    (a:number, b:number): number
+    (a:number, b:number, c:number): number
+}
