@@ -41,3 +41,23 @@ type Add2 = {
     (a:number, b:number): number
     (a:number, b:number, c:number): number
 }
+
+# 3.3
+type SuperPrint = <T>(a: T[]) => T
+
+const superPrint: SuperPrint = (a) => a[0]
+
+const a = superPrint([1, 2, 3, 4])
+const b = superPrint([true, false, true])
+const c = superPrint(["a", "b", "c"])
+const d = superPrint([1, 2, true, "hello"])
+
+<T> 를 활용했다는 것은 타입스크립트에게 우리는 T라는 제네릭을 쓴다라고 알려준 것임.
+T는 배열에서 오고, 함수의 첫번째 파라미터에서 오는 거라고 ts에게 알려준 것임.
+const a 해석 ->
+TS는 이걸 기반 (a: T[])으로 여기를 살펴봐야 하는 것을 알고,  배열의 첫 값 1을 보고
+number임을 인식, T를 number로 바꿔줌.
+
+기억하자.
+제네릭은 내가 요구한 대로 signature를 생성해줄 수 있는 도구라고 생각하면 된다.
+
