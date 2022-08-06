@@ -78,3 +78,107 @@ function superPrint<T>(a: T[]) {
 
 인터넷에서 검색하면 나오는 설명 중 하나.
 '제네릭은 선언 시점이 아니라 생성 시점에 타입을 명시하여 하나의 타입만이 아닌 다양한 타입을 사용할 수 있도록 하는 기법이다.'
+
+# 4.1 Classes
+abstract class (추상 클래스)
+추상 메소드를 만들려면, 메소드를 클래스 안에서 구현(implementation)하지 않으면 된다.
+추상 클래스 안에서는 추상 메소드를 만들 수 있다.
+하지만, 메소드를 구현해서는 안 되고, 대에 메소드의 call signature만 적어두어야 한다.
+메소드는 클래스 안에 존재하는 함수이다.
+
+//추상 클래스 생성
+abstract class User {
+    constructor(
+        // typescript에는 private 존재 -> js는 없음.
+        // ts -> js로 컴파일하면서 사라짐. ts가 개발자 보호해주는 용도임. 여기선...
+        protected firstName: string,
+        protected lastName: string,
+        protected nickName: string
+    ) {}
+
+    abstract getNickName(): void
+
+    getFullName() {
+        return `${this.firstName} ${this.lastName}`
+    }
+}
+
+class Player extends User {
+    // 추상 클래스에 추상 메소드가 있다면, 해당 추상 클래스를 상속받는 녀석은 반드시 구현해야 함.
+    getNickName() {
+        console.log(this.nickName)
+    }
+}
+
+const ik = new Player("JeongIK", "Seo", "또르");
+
+
+ public, private, protected
+ 여기서 protected는 클래스 밖에서는 private처럼 접근이 불가능 하나,
+ 자식 클래스가 상속 받는 상황에서는 접근이 가능하다.
+
+
+# 4.2 Recap
+1. # 4.1 복습
+ - public, protected, private
+ - abstract class, abstract method
+ - 관련 보호기능은 js는 신경안씀. 오직 ts에서만 보호해줌.
+
+2. 실습 코드
+/**
+ * Words 타입의 key값이 string만을 property로 가지는 object라는 뜻
+ * 그리고 그 key의 value값도 string.
+ * key (string): value (string)
+ * 
+ * object의 type을 선언 해야 하는 상황에서 쓸 수 있음
+ * 이 object는 제한된 양의 property 만을 가질 수 있고, 
+ * property에 대해서 미리 알지 못하지만 타입만 알고 있을 때 쓰면 됨.
+ */
+type Words = {
+    [key: string]: string
+}
+
+// 위 Words type 테스트
+let test: Words = {
+    "ik": "ts master",
+}
+
+class Dict {
+    private words: Words
+    /**
+     * constructor가 words를 지정해주기를 원하지 않는 상황에서 그냥 initializer 없이 바로 쓰면 에러가 남.
+     * 그래서 아래에 constructor에서 수동으로 초기화를 해주어야 함.
+     */ 
+    constructor() {
+        this.words = {}
+    }
+    add(word: Word) {
+        if (this.words[word.term] === undefined) {
+            this.words[word.term] = word.def;
+        }
+    }
+    def(term: string) {
+        return this.words[term]
+    }
+    print() {
+        return this.words
+    }
+}
+
+class Word {
+    constructor(
+        public term: string,
+        public def: string
+    ) {}
+}
+
+const kimchi = new Word("kimchi", "한국 전통 음식 - 배추");
+const dict = new Dict();
+
+dict.add(kimchi)
+dict.def("kimchi")
+
+console.log(dict.def("kimchi"))
+console.log(dict.print())
+
+///// 실습 코드 끝 /////
