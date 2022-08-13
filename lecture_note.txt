@@ -264,3 +264,54 @@ typescript가 타입을 관리하는 것은 .ts 파일만 관리한다.
   : 이 경우, --production 옵션 추가하여 배포할 프로젝트 빌드시, devDependencies 에 있는 패키지들은 포함되지 않음.
 관련하여 웹 검색해서 알아는 두자!
 https://phsun102.tistory.com/29
+
+2. static 함수
+: 클래스 안에서 사용하는 함수로, 클래스 인스턴스가 없어도 부를 수 있는 함수를 뜻함.
+  클래스로 인스턴스를 생성한 후, 해당 인스턴스로 호출 가능한 것들과는 다름.
+  그냥 해당 클래스에서 바로 사용할 수 있다고 생각하면 됨.
+  마치 유틸리티 함수 처럼 사용 할 수 있음.
+
+3.
+ts-node
+ts-node는 Node.js용 TypeScript 실행 엔진 및 REPL이다. 
+JIT는 TypeScript를 JavaScript로 변환하므로 사전 컴파일 없이 Node.js에서 TypeScript를 직접 실행할 수 있다.
+즉, 빌드 없이 실행하게 해준다!
+뭔가 수정하고 추가해도 ts-node가 컴파일 할 필요없이 타입스크립트 코드를 대신 실행해줌.
+프로덕션에선 쓰진 않고 개발 환경에서만 쓴다~!!
+빌드 없이 빠르게 새로 고침할 때 쓰기 좋음!
+package.json 파일의 scripts 항목에 "dev": "ts-node src/index.ts" 형태로 추가해서 씀.
+https://www.npmjs.com/package/ts-node
+
+
+설치 방법
+npm i ts-node -D
+
+4.
+nodemon
+자동으로 커맨드를 재 실행해줘서 일일이 커맨드를 실행해서 서버를 재시작 할 필요가 없음.
+ts-node 설정한 "dev" 항목에 nodemon --exec를 추가해야 한다.
+ex) "dev": "nodemon --exec ts-node src/index.ts"
+https://www.npmjs.com/package/nodemon
+npm i nodemon -D
+
+5.
+esModuleInterop
+CommonJS 모듈을 ES6 모듈 코드베이스로 가져오려고 할 때 발생하는 문제를 해결해줌. 
+ES6 모듈 사양을 준수하여 CommonJS 모듈을 정상적으로 가져올 수 있게 해준다.
+https://www.typescriptlang.org/tsconfig/#esModuleInterop
+
+
+# 5.6 DefinitelyTyped
+TypeScript type 정의를 위한 리포지토리!!
+https://github.com/DefinitelyTyped/DefinitelyTyped
+
+아래 같은 방식으로 npm install해서 typescript가 인식하게 한다!
+@types/node
+npm i @types/node -D
+
+※ 요즘은 npm에 d.ts 파일이 포함되는 추세여서 예전만큼은 아니지만 그래두 알아두자! 중요!
+
+
+# 5.8 Conclusions
+- 타입 스크립트 핸드북을 꼭 틈틈이 읽어보자 ^^
+- .prettierrc_copy.txt 파일을 보면서 prettier 의 항목을 일단 얼추 알아두자 ^^
