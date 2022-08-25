@@ -42,7 +42,42 @@ type Add2 = {
     (a:number, b:number, c:number): number
 }
 
-# 3.3
+# 3.2 Polymorphism
+Polymorphism (다형성) 이란 무엇일까?
+1. poly
+그리스 어로 poly 라는 뜻은 many, several, much, multi...의 뜻을 가지고 있음
+polygon (다각형)을 떠올려도 비슷함!
+poly는 많은, 다수의, gon은 각도라는 뜻! - 여러개의 각을 가지고, 여러개의 면을 가진 것!
+2.morphos 혹은 morphic 은?
+form (형태), structure (구조) 란 뜻을 가지고 있음.
+이게 morphos의 의미.
+3.결론
+Polymorphism -> 결국은 many(poly) structure(morphos) 라고도 할 수 있음!
+내포하는 뜻 - 여러가지 형태나 구조를 가진 함수!
+ → 하나의 함수가 여러가지 타입이나 다른 리턴값을 가진 형태로 존재 가능하다는 뜻!
+
+concreate type
+- number, boolean, void 등 지금까지 배운 타입
+
+generic type
+- 타입의 placeholder
+
+※ 제네릭을 기억하자
+>>>>type SuperPrint = {
+    <T>(arr: T[]): void
+}
+
+const superPrint: SuperPrint = (arr) => {
+    arr.forEach(i => console.log(i))
+}
+
+superPrint([true, true, false])
+superPrint([1, 2, 3, 4])
+superPrint(["seo", "ik", "jeong", "ysw"])
+superPrint(["seo", 27, 1, "ysw", true])
+
+
+# 3.3 Generic Recap
 type SuperPrint = <T>(a: T[]) => T
 
 const superPrint: SuperPrint = (a) => a[0]
