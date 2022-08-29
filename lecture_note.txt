@@ -181,6 +181,8 @@ const ik = new Player("JeongIK", "Seo", "또르");
    → React.js를 이용해 작업을 할 때 많이 사용함.
    → js로 컴파일시 번역(?)되지 않음 - 파일 사이즈가 작아짐!
    → 단순히 객체의 형태를 알려주는 용도라면 interface가 좋다.
+   → private, protected property를 사용 못함. (오직 public만 가능)
+   → abstract과 달리 constructor를 수동으로 만들어주어야 함.!
    → abstract 같은거는 extends 키워드 써서 상속하지만, interface는 implementation 을 써서 상속해야 한다.
 
 - ts에 object 모양을 알려주는 방법은 2가지가 있음
